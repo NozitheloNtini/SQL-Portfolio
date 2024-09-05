@@ -53,4 +53,4 @@ ORDER BY price desc;
 #SQL Query that will show how many Smart LED TVs were bought
 SELECT COUNT (item_name)
 FROM superstore 
-WHERE item_name = "Smart LED TV"
+WHERE item_name = "Smart LED TV";
