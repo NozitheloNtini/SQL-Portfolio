@@ -24,6 +24,7 @@ In this repository, you'll find SQL scripts that cover a wide range of topics, i
 ## Skills Demonstrated   
 
 - **Data Manipulation:** Proficient in SELECT, CREATE, INSERT operations.
-- **Aggregation:** Utilizing GROUP BY, HAVING, and aggregate functions like SUM, AVG, COUNT.
+- **Subqueries:** Writing nested queries for complex data retrieval.
+- **Aggregation:** Utilizing CASE, GROUP BY, HAVING, and aggregate functions like SUM, AVG, COUNT.
 - **Database Design:** Knowledge of normalization, creating tables, and managing relationships.
 - **Stored Procedures & Functions:** Creating and using stored procedures and user-defined functions.
