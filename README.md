@@ -18,7 +18,9 @@ In this repository, you'll find SQL scripts that cover a wide range of topics, i
 
 1. **Superstore Database**
    - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Superstore%20Database)
-     
+2. **Fortune 500 Analysis**
+   - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Fortune%20500%20Analysis)
+   
 ## Skills Demonstrated   
 
 - **Data Manipulation:** Proficient in SELECT, CREATE, INSERT operations.
