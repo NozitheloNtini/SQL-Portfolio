@@ -76,7 +76,7 @@ FROM fortune_companies;
 -- This query shows the company with the lowest employee count 
 
 
--- Highest employee tenure? 
+-- Highest employee tenure
 SELECT company_name, avg_employee_tenure
 FROM fortune_companies
 ORDER BY avg_employee_tenure DESC
