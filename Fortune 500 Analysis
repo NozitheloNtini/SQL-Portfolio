@@ -58,51 +58,60 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
-#For this project, I used SQL to query the Fortune 500 database to get information different companies and compare what they have to offer to employees
+#Project Title: Fortune 500 Companies Analysis
+-- This project analyzes various employee benefits across Fortune 500 companies, focusing on metrics such as average paid time off (PTO), 
+maternity leave, and the availability of healthcare benefits. The analysis provides insights into industry standards and helps identify which industries offer better employee benefits.
 
--- Which top 5 companies have the highest revenue? --
-
+-- Companies with high revenue
 SELECT company_name, revenue
 FROM fortune_companies
-ORDER BY revenue desc 
+ORDER BY revenue DESC
 LIMIT 5;
+-- This query shows top 5 companies that generate the highest revenues
 
--- Which company has the lowest employees? --
 
-SELECT company_name, min (employees)
+-- Lowest employee count 
+SELECT company_name, min (employees) AS lowest_employee_count
 FROM fortune_companies;
+-- This query shows the company with the lowest employee count 
 
--- Which companies have the highest employee tenure? --
+
+-- Highest employee tenure? 
 SELECT company_name, avg_employee_tenure
 FROM fortune_companies
-ORDER BY avg_employee_tenure desc
+ORDER BY avg_employee_tenure DESC
 LIMIT 10;
+-- This query shows which company has employees that work the longest
 
--- Which industries feature most?  --
 
+-- Most Popular Industry 
 SELECT industry, count (*) AS number_of_companies
 FROM fortune_companies
 GROUP BY industry
 ORDER BY number_of_companies DESC;
+--This query shows which industry shows up more frequently in the Fortune 500 list
 
--- Show average PTO and maternity leave per industry --
 
+-- Average PTO and maternity leave per industry 
 SELECT industry, 
 ROUND (AVG(maternity_leave_weeks),1) AS avg_maternity_leave,
 ROUND (AVG(paid_time_off_days), 1) AS avg_pto
 FROM fortune_companies
 GROUP BY industry;
+--This query calculates the average maternity leave and paid time off for each industry, helping to understand which industries provide better leave benefits to employees
 
---Which industries have more than 1 company providing healthcare benefits?--
 
+-- Industries with More Than One Company Providing Healthcare Benefits 
 SELECT industry, COUNT(*) AS company_count
 FROM fortune_companies
 WHERE healthcare_benefits = 1
 GROUP BY industry
 HAVING COUNT(*) > 1
 ORDER BY company_count desc;
+-- This query identifies industries that have more than one company offering healthcare benefits, highlighting sectors where employee healthcare coverage is more common
 
--- Best companies to work for based off presence of healthcare benefits, average paid time off days & highest maternity leave weeks per industry -- 
+
+-- Best companies to work for 
 
 SELECT company_name, industry, healthcare_benefits, maternity_leave_weeks, paid_time_off_days,
        
@@ -159,5 +168,19 @@ END AS Company_Status
 
 FROM fortune_companies
 ORDER BY Company_status ASC;
+-- Based off presence of healthcare benefits, average paid time off days & highest maternity leave weeks per industry, we see which company
+is best to work for, depending on which benefits employees prioritise
 
+#How to Run the Queries:
+1. Ensure you have access to the fortune_companies database.
+2. Copy and paste the SQL queries into your SQL environment.
+3. Execute the queries to see the results.
+
+#Technologies Used:
+1. SQL
+2. DB Fiddle (for online SQL testing and sharing)
+
+#Conclusion
+This analysis provides valuable insights into the employee benefits offered by Fortune 500 companies, 
+revealing trends across different industries. This project highlights the importance of employee benefits in attracting and retaining employees.
 
