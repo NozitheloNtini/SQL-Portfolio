@@ -1,6 +1,6 @@
 -- #Project Title: Customer & Order Analytics
 -- In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
--- Note that some queries contain the filter "WHERE length(orderid) = 6 AND orderid <> 'Order ID'". The order id column has some unclean data, that's why we use the filters clean out. So queries that don't use the filters are because the queries do not contain order id.
+--Note that some queries contain the filter "WHERE length(orderid) = 6 AND orderid <> 'Order ID'". The order id column has some unclean data, that's why we use the filters clean out. So queries that don't use the filters are because the queries do not contain order id.
 
 
 -- Orders placed in January
@@ -33,8 +33,6 @@ AND orderid <> 'Order ID';
 -- Cheapest order in January
 SELECT distinct Product, MIN (price) AS price
 FROM BIT_DB.JanSales
-WHERE length(orderid) = 6
-AND orderid <> 'Order ID'
 GROUP BY product
 ORDER BY price
 LIMIT 1;
@@ -44,8 +42,6 @@ LIMIT 1;
 -- January Revenue
 SELECT product, SUM(quantity)*price as Revenue
 FROM BIT_DB.JanSales
-WHERE length(orderid) = 6
-AND orderid <> 'Order ID'
 GROUP BY product;
 -- This query answers the question, "What is the total revenue for each product sold in January?"
 
@@ -53,9 +49,7 @@ GROUP BY product;
 -- Products sold to a certain address 
 SELECT product, quantity, SUM(quantity)*price AS total_revenue
 FROM BIT_DB.FebSales
-WHERE location = '548 Lincoln St, Seattle, WA 98101'
-AND length(orderid) = 6
-AND orderid <> 'Order ID';
+WHERE location = '548 Lincoln St, Seattle, WA 98101';
 -- This query answers the question, "Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?"
 
 
@@ -76,8 +70,8 @@ SELECT product, SUM(quantity) AS total_sold
 FROM BIT_DB.FebSales
 WHERE location LIKE '%los Angeles%'
 GROUP BY product;
--- This query will list all the products sold in Los Angeles in February, and includes how many of each were sold.
 
+-- This query will list all the products sold in Los Angeles in February, and includes how many of each were sold.
 
 -- #Technologies Used:
 -- 1. SQL
