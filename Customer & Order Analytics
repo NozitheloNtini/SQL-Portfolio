@@ -1,5 +1,7 @@
 -- #Project Title: Customer & Order Analytics
 -- In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
+-- Note that some queries contain the filter "WHERE length(orderid) = 6 AND orderid <> 'Order ID'". The order id column has some unclean data, that's why we use the filters clean out. So queries that don't use the filters are because the queries do not contain order id.
+
 
 -- Orders placed in January
 SELECT COUNT(orderid) AS orders
@@ -69,8 +71,16 @@ AND orderid <> 'Order ID';
 -- This query answers the question, "How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?"
 
 
+-- Los Angeles products
+SELECT product, SUM(quantity) AS total_sold
+FROM BIT_DB.FebSales
+WHERE location LIKE '%los Angeles%'
+GROUP BY product;
+-- This query will list all the products sold in Los Angeles in February, and includes how many of each were sold.
+
+
 -- #Technologies Used:
 -- 1. SQL
---2. SQLiteStudio
+-- 2. SQLiteStudio
 
 -- #Conclusion: This project analyses a store database. I used SQL queries to see which items are most ordered amd how much money they bring to the store. The different tables aid in providing easier analysis of different months
