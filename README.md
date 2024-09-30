@@ -23,8 +23,12 @@ In this repository, you'll find SQL scripts that cover a wide range of topics, i
    - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Fortune%20500%20Analysis)
 3. **Netflix Database**
    - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Netflix%20Database)
-4. Customer & Order Analysis
+4. **Customer & Order Analysis**
    - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Customer%20%26%20Order%20Analytics)
+5. **Spotify**
+   - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Spotify)
+
+
      
 ## Skills Demonstrated   
 
