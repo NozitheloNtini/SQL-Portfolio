@@ -1,0 +1,78 @@
+-- Creating the table:
+
+#CREATE TABLE Spotifydata (
+    id               INTEGER        PRIMARY KEY,
+    artist_name      VARCHAR        NOT NULL,
+    track_name       VARCHAR        NOT NULL,
+    track_id         VARCHAR        NOT NULL,
+    popularity       INTEGER        NOT NULL,
+    danceability     DECIMAL (4, 3) NOT NULL,
+    energy           DECIMAL (4, 3) NOT NULL,
+    song_key         INTEGER        NOT NULL,
+    loudness         DECIMAL (5, 3) NOT NULL,
+    song_mode        INTEGER        NOT NULL,
+    speechiness      DECIMAL (5, 4) NOT NULL,
+    acousticness     DECIMAL (6, 5) NOT NULL,
+    instrumentalness DECIMAL (8, 7) NOT NULL,
+    liveness         DECIMAL (5, 4) NOT NULL,
+    valence          DECIMAL (4, 3) NOT NULL,
+    tempo            DECIMAL (6, 3) NOT NULL,
+    duration_ms      INTEGER        NOT NULL,
+    time_signature   INTEGER        NOT NULL
+);
+
+
+
+--Project name: Spotify Analysis
+-- This project analyses a 2021 Top 50 Charts. It focuses on metrics such as popularity, danceability, tempo, loudness, amoungst other factors. 
+
+
+-- Popular artists
+SELECT  artist_name, COUNT(*) AS artist_count
+FROM BIT_DB.spotifydata
+GROUP BY artist_name
+ORDER BY artist_count DESC
+LIMIT 5;
+-- This query displays the top 5 popular artists
+
+ 
+-- Artists that appear more than once
+SELECT artist_name, COUNT(*) AS frequency
+FROM BIT_DB.spotifydata
+GROUP BY artist_name
+HAVING frequency > 1;
+-- This query shows artists who have more than one song in the chart
+
+
+-- Loudness
+SELECT track_name, artist_name, loudness,
+CASE WHEN loudness > -3 THEN 'Very Loud'
+WHEN loudness > -6 THEN 'Loud'
+WHEN loudness > -9 THEN 'Moderate'
+ELSE 'Quiet'
+END AS loudness_category
+FROM BIT_DB.spotifydata
+LIMIT 10;
+-- This query groups different songs in the chart according to their loudness
+
+
+-- Fastest songs
+SELECT artist_name, track_name, MAX (tempo) AS song_speed
+FROM BIT_DB.spotifydata
+GROUP BY artist_name
+ORDER BY song_speed DESC
+LIMIT 10;
+-- This query will display the top 10 fastest songs
+
+
+-- Avegrage danceability
+SELECT artist_name ,avg(danceability) AS avg_danceability
+FROM BIT_DB.spotifydata
+GROUP BY artist_name;
+
+
+-- Artist search
+SELECT track_name, artist_name
+FROM BIT_DB.Spotifydata
+WHERE artist_name LIKE '%Doja Cat%';
+-- This query will display a ceratin artist's name and the tracks they've released 
