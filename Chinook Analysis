@@ -1,0 +1,78 @@
+-- Project Title: Chinook Analysis 
+
+
+-- 1. Countries with the most purchases
+SELECT BillingCountry, COUNT (BillingCountry) NumberOfOrders
+FROM chinook.invoices
+GROUP BY BillingCountry
+ORDER BY NumberOfOrders DESC
+LIMIT 5;
+
+-- 2. Customers with the most track purchases
+SELECT cust.FirstName, cust.LastName, COUNT(tra.TrackId) AS TotalSongs
+FROM chinook.customers cust
+INNER JOIN chinook.invoices inv
+ON cust.CustomerId = inv.CustomerId
+INNER JOIN chinook.invoice_items invoit 
+ON inv.InvoiceId = invoit.InvoiceId
+INNER JOIN chinook.tracks tra 
+ON invoit.TrackId = tra.TrackId
+GROUP BY cust.FirstName, cust.LastName;
+
+-- 3. customers globally and their most ordered genres
+SELECT gen.Name AS Genre,
+cust.FirstName, 
+cust.LastName, 
+COUNT(invoit.TrackId) AS OrderCount
+FROM chinook.customers cust
+INNER JOIN chinook.invoices inv 
+ON cust.CustomerId = inv.CustomerId
+INNER JOIN chinook.invoice_items invoit 
+ON inv.InvoiceId = invoit.InvoiceId
+INNER JOIN chinook.tracks tra 
+ON invoit.TrackId = tra.TrackId
+INNER JOIN chinook.genres gen 
+ON tra.GenreId = gen.GenreId
+GROUP BY gen.Name, cust.FirstName, cust.LastName
+ORDER BY OrderCount DESC; 
+
+
+-- 4. Artists and their albums
+SELECT art.Name, alb.Title
+FROM chinook.artists art
+INNER JOIN chinook.albums alb
+ON art.ArtistId = alb.ArtistId;
+
+
+-- 5. Total sales in 2010
+SELECT ROUND (SUM (Total),2) AS TotalSales
+FROM chinook.invoices
+WHERE InvoiceDate LIKE '2010-%';
+
+-- 6. Sales agent with most sales in 2010
+SELECT emp.FirstName, emp.LastName, ROUND (sum(inv.Total),2) AS TotalSales
+FROM chinook.employees emp
+INNER JOIN chinook.customers cust
+ON emp.employeeid = cust.supportrepid
+INNER JOIN chinook.invoices inv
+ON inv.customerid = cust.customerid
+WHERE inv.InvoiceDate LIKE '2010-%'
+GROUP BY emp.FirstName, emp.LastName
+ORDER BY TotalSales DESC
+LIMIT 1;
+
+
+-- Business Conclusion
+
+-- 1. By gathering the Top 5 countries with the most orders, we identify our biggest client base. Conversely, by changing the query to (ORDER BY NumberOfOrders ASC) investigations should be down to understand why the countries with the lowest purchases are so. This could be because of pricing, cultural differences, lack of maerketing, etc.
+-- 2. Identifying the customers with the highest purchases helps determine loyal customers. With this, we can do a Loyalty Program: if a client reaches a certain number of orders, they receive an incentive. This increases repeat purchases leading to brand/store loyalty.
+-- 3. Identifying the most ordered genre helps us to:
+--        A. Know which music to add to the store, based off the popular genre to guarantee sales
+--        B. BY changing ordering the query to the customer's names (ORDER BY Firstname), we see which genre each customer purchased most of, allowing is to provide personalised marketing and sales recomendations for each customer
+--        C. Ensure inventory has the right amount of stock based off customer preferences  
+-- 4. The database has the artists and their albums stored separately, joining the two tables helps identify which artists have which songs. 
+--        Also, it shows artists with multiple songs, with this information, we could do bundles deals. By purchasing a certain number of songs from one artist, they get a discount 
+-- 5. By getting the current year's total sales, we can compare to the prevous years, to track for company growth in terms of revenue appreciation/ depreciation
+--         Looking at sales from a certain year in total then comparing the sales of the top sales agent, helps to highlight the amount of work the agent does to promote the store and music.
+-- 6. By identifying the top sales agent, it makes it easier to see which agent is deserving of incentives such as a raise in salary, a promotion, etc
+--        Changing the query to (ORDER BY TotalSales ASC) will display the sales agant with the lowest sales. This also helps to implement training strategies to ensure sales agent with the least sales grows and improves
