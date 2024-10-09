@@ -1,4 +1,6 @@
 -- #Project Title: Chinook Analysis 
+
+This project uses the following [raw data](https://t.ly/Rp7X1)
 -- Chinook is a fictional Music Store. This project uses SQL Queries to examine data such as the most popular countries for purchases, the top customers, 
 --  and genre preferences, we can gain valuable insights into the business landscape. 
 -- The findings from this analysis will help identify opportunities for marketing strategies, improve customer loyalty, and ultimately drive sales growth.
