@@ -6,12 +6,14 @@ Chinook is a fictional Music Store. This project uses SQL Queries to examine dat
 and genre preferences, we can gain valuable insights into the business landscape. 
 The findings from this analysis will help identify opportunities for marketing strategies, improve customer loyalty, and ultimately drive sales growth.
 
+
 -- 1. Countries with the most purchases
 SELECT BillingCountry, COUNT (BillingCountry) NumberOfOrders
 FROM chinook.invoices
 GROUP BY BillingCountry
 ORDER BY NumberOfOrders DESC
 LIMIT 5;
+
 
 -- 2. Customers with the most track purchases
 SELECT cust.FirstName, cust.LastName, COUNT(tra.TrackId) AS TotalSongs
@@ -23,6 +25,7 @@ ON inv.InvoiceId = invoit.InvoiceId
 INNER JOIN chinook.tracks tra 
 ON invoit.TrackId = tra.TrackId
 GROUP BY cust.FirstName, cust.LastName;
+
 
 -- 3. customers globally and their most ordered genres
 SELECT gen.Name AS Genre,
@@ -54,6 +57,7 @@ SELECT ROUND (SUM (Total),2) AS TotalSales
 FROM chinook.invoices
 WHERE InvoiceDate LIKE '2010-%';
 
+
 -- 6. Sales agent with most sales in 2010
 SELECT emp.FirstName, emp.LastName, ROUND (sum(inv.Total),2) AS TotalSales
 FROM chinook.employees emp
@@ -68,7 +72,7 @@ LIMIT 1;
 
 
 #How to Run the Queries:
-1. Ensure you have access to the chinook database. Link is provided abobe
+1. Ensure you have access to the chinook database. Link is provided above
 2. Copy and paste the SQL queries into your SQL environment. I used SQLiteStudio 3.4.4
 3. Execute the queries to see the results.
 
@@ -76,7 +80,7 @@ LIMIT 1;
 1. SQL
 2. SQLiteStudio (query writing and running)
 
-#Business Conclusion
+#Business Conclusion:
 
 1. By gathering the Top 5 countries with the most orders, we identify our biggest client base. Conversely, by changing the query to (ORDER BY NumberOfOrders ASC) investigations should be down to understand why the countries with the lowest purchases are so. This could be because of pricing, cultural differences, lack of maerketing, etc.
 2. Identifying the customers with the highest purchases helps determine loyal customers. With this, we can do a Loyalty Program: if a client reaches a certain number of orders, they receive an incentive. This increases repeat purchases leading to brand/store loyalty.
@@ -90,3 +94,4 @@ LIMIT 1;
          Looking at sales from a certain year in total then comparing the sales of the top sales agent, helps to highlight the amount of work the agent does to promote the store and music.
 6. By identifying the top sales agent, it makes it easier to see which agent is deserving of incentives such as a raise in salary, a promotion, etc
         Changing the query to (ORDER BY TotalSales ASC) will display the sales agant with the lowest sales. This also helps to implement training strategies to ensure sales agent with the least sales grows and improves
+
