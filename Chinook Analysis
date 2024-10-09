@@ -1,5 +1,7 @@
--- Project Title: Chinook Analysis 
-
+-- #Project Title: Chinook Analysis 
+-- Chinook is a fictional Music Store. This project uses SQL Queries to examine data such as the most popular countries for purchases, the top customers, 
+--  and genre preferences, we can gain valuable insights into the business landscape. 
+-- The findings from this analysis will help identify opportunities for marketing strategies, improve customer loyalty, and ultimately drive sales growth.
 
 -- 1. Countries with the most purchases
 SELECT BillingCountry, COUNT (BillingCountry) NumberOfOrders
