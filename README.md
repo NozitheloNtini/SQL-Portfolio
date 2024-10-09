@@ -27,6 +27,8 @@ In this repository, you'll find SQL scripts that cover a wide range of topics, i
    - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Customer%20%26%20Order%20Analytics)
 5. **Spotify**
    - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Spotify)
+6. **Chinook Music Store**
+    - [Link to Script](https://github.com/NozitheloNtini/SQL/blob/main/Chinook%20Analysis)
 
 
      
