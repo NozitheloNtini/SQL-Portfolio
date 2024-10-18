@@ -1,6 +1,21 @@
 #Project Title: Customer & Order Analytics
-In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
---Note that some queries contain the filter "WHERE length(orderid) = 6 AND orderid <> 'Order ID'". The order id column has some unclean data, that's why we use the filters clean out. So queries that don't use the filters are because the queries do not contain order id.
+#Project Overview and Purpose: In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. The project aims to provide insights into customer behavior, product popularity, revenue generation, and geographic sales trends. It analyses sales data for a specific business, focusing on January and February sales performance.
+#Project Questions:
+-- 1. How many orders were placed in January?
+-- 2. How many of the above orders were for an iPhone?
+-- 3. What are the account numbers for all the orders that were placed in February?
+-- 4. Which product was the cheapest one sold in January, and what was the price?
+-- 5. What is the total revenue for each product sold in January?
+-- 6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+-- 7. How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+-- 8. Which products in Los Angeles were sold in February, and how many of each were sold?
+-- 9.  Which locations in New York received at least 3 orders in January, and how many orders did they each receive?
+-- 10. How many of each type of headphone were sold in February?
+-- 11. What was the average amount spent per account in February?
+-- 12. What was the average quantity of products purchased per account in February?
+-- 13. Which product brought in the most revenue in January and how much revenue did it bring in total?
+
+--To ensure data accuracy, queries were filtered to exclude inconsistent Order ID data (WHERE length(orderid) = 6 AND orderid <> 'Order ID'). This filter was applied where relevant, based on query requirements.
 
 
 -- 1.Orders placed in January
@@ -8,7 +23,6 @@ SELECT COUNT(orderid) AS orders
 FROM BIT_DB.JanSales
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
--- This query answers the question, "How many orders were placed in January?"
 
 
 -- 2. iPhone orders
@@ -17,7 +31,6 @@ FROM BIT_DB.JanSales
 WHERE Product = 'iPhone' 
 AND length(orderid) = 6
 AND orderid <> 'Order ID';
--- This query answers the question, "How many of the above orders were for an iPhone?" 
 
 
 -- 3. Account numbers for February orders
@@ -27,7 +40,6 @@ INNER JOIN BIT_DB.customers custo
 ON febs.orderID = custo.order_id  
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
--- This query will display customer account numbers for all the orders that were placed in February.
 
 
 -- 4. Cheapest order in January
@@ -36,21 +48,18 @@ FROM BIT_DB.JanSales
 GROUP BY product
 ORDER BY price
 LIMIT 1;
--- This query answers the question, "Which product was the cheapest one sold in January, and what was the price?"
 
 
 -- 5. January Revenue
 SELECT product, SUM(quantity)*price as Revenue
 FROM BIT_DB.JanSales
 GROUP BY product;
--- This query answers the question, "What is the total revenue for each product sold in January?"
 
 
 -- 6. Products sold to a certain address 
 SELECT product, quantity, SUM(quantity)*price AS total_revenue
 FROM BIT_DB.FebSales
 WHERE location = '548 Lincoln St, Seattle, WA 98101';
--- This query answers the question, "Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?"
 
 
 -- 7. Orders in February and amount spent
@@ -62,7 +71,6 @@ ON Febs.orderid=custo.order_id
 WHERE Febs.Quantity>2
 AND length(orderid) = 6
 AND orderid <> 'Order ID';
--- This query answers the question, "How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?"
 
 
 -- 8. Los Angeles products
@@ -70,7 +78,6 @@ SELECT product, SUM(quantity) AS total_sold
 FROM BIT_DB.FebSales
 WHERE location LIKE '%los Angeles%'
 GROUP BY product;
--- This query will list all the products sold in Los Angeles in February, and includes how many of each were sold.
 
 
 -- 9. New York orders
@@ -81,7 +88,6 @@ AND length(orderid) = 6
 AND orderid <> 'Order ID'
 GROUP BY location
 HAVING count(orderID)>=3;
--- This query answers the question, "Which locations in New York received at least 3 orders in January, and how many orders did they each receive?"
 
 
 -- 10. Headphone sales in February
@@ -89,7 +95,6 @@ SELECT product, SUM (quantity) AS total_sold
 FROM BIT_DB.FebSales
 WHERE product LIKE '%headphone%'
 GROUP BY product;
--- This query answers the question, "How many of each type of headphone were sold in February?"
 
 
 -- 11. Average spent in February
@@ -99,7 +104,6 @@ INNER JOIN BIT_DB.FebSales Feb
 ON Feb.orderID = cust.order_id  
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
--- This query answers the question, "What was the average amount spent per account in February?"
 
 
 -- 12. Average bought in February
@@ -109,7 +113,6 @@ INNER JOIN BIT_DB.FebSales Feb
 ON Feb.orderID = cust.order_id  
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
--- This query answers the question, "What was the average quantity of products purchased per account in February?"
 
 
 -- 13. Product bringing most revenue in January
@@ -118,12 +121,13 @@ FROM BIT_DB.JanSales
 GROUP BY product
 ORDER BY sum(quantity*price) DESC
 LIMIT 1;
--- This query answers the question, "Which product brought in the most revenue in January and how much revenue did it bring in total?"
 
 
 -- #Technologies Used:
 -- 1. SQL
 -- 2. SQLiteStudio
+
+
 
 #Business Conclusion:
 Orders and Customer Insights
