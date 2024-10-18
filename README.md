@@ -19,14 +19,14 @@ In this repository, I've compiled SQL scripts that showcase my ability to:
 ## Projects
 Explore some of the projects where I've applied these skills:
 
-| **Project** | **Focus** | **Link to Script** |
-| --- | --- | --- |
-| Superstore Database | Sales and customer analysis | [Link](https://github.com/NozitheloNtini/SQL/blob/main/Superstore%20Database) |
-| Fortune 500 Analysis | Business performance and trends in Fortune 500 companies | [Link](https://github.com/NozitheloNtini/SQL/blob/main/Fortune%20500%20Analysis) |
-| Netflix Database | User engagement and content analysis | [Link](https://github.com/NozitheloNtini/SQL/blob/main/Netflix%20Database) |
-| Customer & Order Analysis | Customer purchase behavior and order trends | [Link](https://github.com/NozitheloNtini/SQL/blob/main/Customer%20%26%20Order%20Analytics) |
-| Spotify Data Exploration | Music trends and user preferences | [Link](https://github.com/NozitheloNtini/SQL-Portfolio/blob/main/Spotify%20Top%2050%202021) |
-| Chinook Music Store | Sales performance and artist analysis | [Link](https://github.com/NozitheloNtini/SQL/blob/main/Chinook%20Analysis) |
+| **Project** | **Focus** |
+| --- | --- |
+| [Superstore Database](https://github.com/NozitheloNtini/SQL/blob/main/Superstore%20Database) | Sales and customer analysis. |
+| [Fortune 500 Analysis](https://github.com/NozitheloNtini/SQL/blob/main/Fortune%20500%20Analysis) | Business performance and trends in Fortune 500 companies. |
+| [Netflix Database](https://github.com/NozitheloNtini/SQL/blob/main/Netflix%20Database) | User engagement and content analysis. |
+| [Customer & Order Analysis](https://github.com/NozitheloNtini/SQL/blob/main/Customer%20%26%20Order%20Analytics) | Customer purchase behavior and order trends. |
+| [Spotify Data Exploration](https://github.com/NozitheloNtini/SQL-Portfolio/blob/main/Spotify%20Top%2050%202021) | Music trends and user preferences. |
+| [Chinook Music Store](https://github.com/NozitheloNtini/SQL/blob/main/Chinook%20Analysis) | Sales performance and artist analysis. |
 
 ## Skills Demonstrated
 Through these projects, I’ve developed a wide range of SQL skills, including:
