@@ -1,3 +1,13 @@
+#Project Title: Fortune 500 Companies Analysis
+#Project Overview & Purpose: This project analyzes various employee benefits across Fortune 500 companies, focusing on metrics such as average paid time off (PTO), maternity leave, and the availability of healthcare benefits. The analysis provides insights into industry standards and helps identify which industries offer better employee benefits.
+#Project Questions: 
+-- 1. What companies generate the most revenue?
+-- 2. What companies have the lowest number of employees?
+-- 3. Which company has employees that work the longest?
+-- 4. What are the most common industries in the Fortune 500?
+-- 5. Which industries have at least 2 companies offering healthcare benefits?
+-- 6. What companies are best to work for?
+
 #This project uses the following data:
 
 CREATE TABLE fortune_companies (
@@ -58,50 +68,33 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
-#Project Title: Fortune 500 Companies Analysis
--- This project analyzes various employee benefits across Fortune 500 companies, focusing on metrics such as average paid time off (PTO), 
-maternity leave, and the availability of healthcare benefits. The analysis provides insights into industry standards and helps identify which industries offer better employee benefits.
-
--- Companies with high revenue
+-- 1. Companies with high revenue
 SELECT company_name, revenue
 FROM fortune_companies
 ORDER BY revenue DESC
 LIMIT 5;
--- This query shows top 5 companies that generate the highest revenues
 
 
--- Lowest employee count 
+-- 2. Lowest employee count 
 SELECT company_name, min (employees) AS lowest_employee_count
 FROM fortune_companies;
--- This query shows the company with the lowest employee count 
 
 
--- Highest employee tenure
+-- 3. Highest employee tenure
 SELECT company_name, avg_employee_tenure
 FROM fortune_companies
 ORDER BY avg_employee_tenure DESC
 LIMIT 10;
--- This query shows which company has employees that work the longest
 
 
--- Most Popular Industry 
+-- 4. Most Popular Industry 
 SELECT industry, count (*) AS number_of_companies
 FROM fortune_companies
 GROUP BY industry
 ORDER BY number_of_companies DESC;
---This query shows which industry shows up more frequently in the Fortune 500 list
 
 
--- Average PTO and maternity leave per industry 
-SELECT industry, 
-ROUND (AVG(maternity_leave_weeks),1) AS avg_maternity_leave,
-ROUND (AVG(paid_time_off_days), 1) AS avg_pto
-FROM fortune_companies
-GROUP BY industry;
---This query calculates the average maternity leave and paid time off for each industry, helping to understand which industries provide better leave benefits to employees
-
-
--- Industries with More Than One Company Providing Healthcare Benefits 
+-- 5. Industries with More Than One Company Providing Healthcare Benefits 
 SELECT industry, COUNT(*) AS company_count
 FROM fortune_companies
 WHERE healthcare_benefits = 1
@@ -111,65 +104,36 @@ ORDER BY company_count desc;
 -- This query identifies industries that have more than one company offering healthcare benefits, highlighting sectors where employee healthcare coverage is more common
 
 
--- Best companies to work for 
+-- 6. Best companies to work for 
+WITH IndustryAverages 
+AS (SELECT industry, 
+AVG(maternity_leave_weeks) AS avg_maternity_leave_weeks, 
+AVG(paid_time_off_days) AS avg_paid_time_off_days
 
-SELECT company_name, industry, healthcare_benefits, maternity_leave_weeks, paid_time_off_days,
-       
-CASE WHEN industry = 'Energy'
-AND healthcare_benefits = 1  
-AND maternity_leave_weeks > (SELECT AVG(maternity_leave_weeks) FROM fortune_companies WHERE industry = 'Energy')
-AND paid_time_off_days > (SELECT AVG(paid_time_off_days) FROM fortune_companies WHERE industry = 'Energy')
+FROM fortune_companies
+GROUP BY industry)
+
+SELECT 
+fc.company_name, 
+fc.industry, 
+fc.healthcare_benefits, 
+fc.maternity_leave_weeks, 
+fc.paid_time_off_days,
+
+CASE 
+WHEN fc.healthcare_benefits = 1  
+AND fc.maternity_leave_weeks > ia.avg_maternity_leave_weeks
+AND fc.paid_time_off_days > ia.avg_paid_time_off_days
 THEN 'Company With Best Benefits'
-
-WHEN industry ='Finance'
-AND healthcare_benefits = 1 
-AND maternity_leave_weeks > (SELECT AVG(maternity_leave_weeks) FROM fortune_companies WHERE industry = 'Finance')
-AND paid_time_off_days > (SELECT AVG(paid_time_off_days) FROM fortune_companies WHERE industry = 'Finance')
-THEN 'Company With Best Benefits'
-
-WHEN industry ='Financials'
-AND healthcare_benefits = 1 
-AND maternity_leave_weeks >(SELECT AVG(maternity_leave_weeks) FROM fortune_companies WHERE industry = 'Financials')
-AND paid_time_off_days > (SELECT AVG(paid_time_off_days) FROM fortune_companies WHERE industry = 'Financials')
-THEN 'Company With Best Benefits'
-
-WHEN industry ='Healthcare'
-AND healthcare_benefits = 1 
-AND maternity_leave_weeks > (SELECT AVG(maternity_leave_weeks) FROM fortune_companies WHERE industry = 'Healthcare')
-AND paid_time_off_days > (SELECT AVG(paid_time_off_days) FROM fortune_companies WHERE industry = 'Healthcare')
-THEN 'Company With Best Benefits'
-
-WHEN industry ='Manufacturing'
-AND healthcare_benefits = 1 
-AND maternity_leave_weeks > (SELECT AVG(maternity_leave_weeks) FROM fortune_companies WHERE industry = 'Manufacturing')
-AND paid_time_off_days > (SELECT AVG(paid_time_off_days) FROM fortune_companies WHERE industry = 'Manufacturing')
-THEN 'Company With Best Benefits'
-
-WHEN industry ='Retail'
-AND healthcare_benefits = 1 
-AND maternity_leave_weeks > (SELECT AVG(maternity_leave_weeks) FROM fortune_companies WHERE industry = 'Retail')
-AND paid_time_off_days > (SELECT AVG(paid_time_off_days) FROM fortune_companies WHERE industry = 'Retail')
-THEN 'Company With Best Benefits'
-
-WHEN industry ='Technology'
-AND healthcare_benefits = 1 
-AND maternity_leave_weeks > (SELECT AVG(maternity_leave_weeks) FROM fortune_companies WHERE industry = 'Technology')
-AND paid_time_off_days > (SELECT AVG(paid_time_off_days) FROM fortune_companies WHERE industry = 'Technology')
-THEN 'Company With Best Benefits'
-
-WHEN industry ='Telecommunications'
-AND healthcare_benefits = 1 
-AND maternity_leave_weeks > (SELECT AVG(maternity_leave_weeks) FROM fortune_companies WHERE industry = 'Telecommunications')
-AND paid_time_off_days > (SELECT AVG(paid_time_off_days) FROM fortune_companies WHERE industry = 'Telecommunications')
-THEN 'Company With Best Benefits'
-
 ELSE 'Company With Least Benefits'
 END AS Company_Status
 
-FROM fortune_companies
-ORDER BY Company_status ASC;
--- Based off presence of healthcare benefits, average paid time off days & highest maternity leave weeks per industry, we see which company
-is best to work for, depending on which benefits employees prioritise
+FROM 
+fortune_companies fc
+JOIN IndustryAverages ia 
+ON fc.industry = ia.industry
+ORDER BY Company_Status ASC;
+--The best company to work for is determined by the presence of healthcare benefits, maternity leave weeks, and paid time off (PTO) days. The query uses a CTE to calculate average maternity leave weeks and paid time off days for each industry. By comparing each company to the averages within its own industry, we ensure that different standards across industries are considered. For example, technology companies might offer more generous PTO policies compared to manufacturing.
 
 #How to Run the Queries:
 1. Ensure you have access to the fortune_companies database.
@@ -181,6 +145,11 @@ is best to work for, depending on which benefits employees prioritise
 2. DB Fiddle (for online SQL testing and sharing). Use this link https://www.db-fiddle.com/f/saxdDCCyos6z6UdpjeEXSJ/0 to run the queries.
 
 #Conclusion
-This analysis provides valuable insights into the employee benefits offered by Fortune 500 companies, 
-revealing trends across different industries. This project highlights the importance of employee benefits in attracting and retaining employees.
+This analysis provides valuable insights into the employee benefits offered by Fortune 500 companies, revealing trends across different industries. This project highlights the importance of employee benefits in attracting and retaining employees.
 
+-- 1. These companies demonstrate exceptional financial performance, indicating strong operational efficiency.
+-- 2. These companies operates with a minimal workforce, suggesting a lean business model or specialised services.
+-- 3. These companies prioritise employee retention, suggesting positive work environments, competitive compensation, and opportunities for growth.
+-- 4. These industries dominate the market, indicating areas of high demand and economic growth.
+-- 5. These sectors prioritise employee well-being, suggesting a competitive job market and industry standards for benefits.
+-- 6. These companies demonstrate a commitment to employee satisfaction and well-being, making them attractive employers.
