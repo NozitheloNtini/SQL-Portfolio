@@ -1,10 +1,14 @@
- #Project Title: Chinook Analysis 
+#Project Title: Chinook Analysis 
+#Project Overview & Purpose: This project uses SQL Queries to examine data such as the most popular countries for purchases, the top customers, and genre preferences, we can gain valuable insights into the business landscape.The findings from this analysis will help identify opportunities for marketing strategies, improve customer loyalty, and ultimately drive sales growth.
+#Project Questions:
+1. Which countries have the most purchases?
+2. Which customers have the most purchases?
+3. Which genres were orders the most? Which customers ordered them?
+4. Which artists released which albums?
+5. How much in sales was made in 2010?
+6. Which sales agent made the most sales is 2010?
 
-This project uses the following raw data (https://t.ly/Rp7X1)
-
-Chinook is a fictional Music Store. This project uses SQL Queries to examine data such as the most popular countries for purchases, the top customers, 
-and genre preferences, we can gain valuable insights into the business landscape. 
-The findings from this analysis will help identify opportunities for marketing strategies, improve customer loyalty, and ultimately drive sales growth.
+-- This project uses the following raw data (https://t.ly/Rp7X1)
 
 
 -- 1. Countries with the most purchases
@@ -27,7 +31,7 @@ ON invoit.TrackId = tra.TrackId
 GROUP BY cust.FirstName, cust.LastName;
 
 
--- 3. customers globally and their most ordered genres
+-- 3. Customers globally and their most ordered genres
 SELECT gen.Name AS Genre,
 cust.FirstName, 
 cust.LastName, 
@@ -82,23 +86,16 @@ LIMIT 1;
 
 #Business Conclusion:
 
-1. By gathering the Top 5 countries with the most orders, we identify our biggest client base. Conversely, by changing the query to (ORDER BY NumberOfOrders ASC) 
-investigations should be down to understand why the countries with the lowest purchases are so. This could be because of pricing, cultural differences, 
-lack of maerketing, etc.
-2. Identifying the customers with the highest purchases helps determine loyal customers. With this, we can do a Loyalty Program: if a client reaches a certain
-number of orders, they receive an incentive. This increases repeat purchases leading to brand/store loyalty.
+1. By gathering the Top 5 countries with the most orders, we identify our biggest client base. Conversely, by changing the query to (ORDER BY NumberOfOrders ASC) investigations should be down to understand why the countries with the lowest purchases are so. This could be because of pricing, cultural differences, lack of maerketing, etc.
+2. Identifying the customers with the highest purchases helps determine loyal customers. With this, we can do a Loyalty Program: if a client reaches a certain number of orders, they receive an incentive. This increases repeat purchases leading to brand/store loyalty.
 3. Identifying the most ordered genre helps us to:
         A. Know which music to add to the store, based off the popular genre to guarantee sales
-        B. BY changing ordering the query to the customer's names (ORDER BY Firstname), we see which genre each customer purchased most of, allowing is to 
-provide personalised marketing and sales recomendations for each customer
+        B. BY changing ordering the query to the customer's names (ORDER BY Firstname), we see which genre each customer purchased most of, allowing is to provide personalised marketing and sales recomendations for each customer
         C. Ensure inventory has the right amount of stock based off customer preferences  
 4. The database has the artists and their albums stored separately, joining the two tables helps identify which artists have which songs. 
-        Also, it shows artists with multiple songs, with this information, we could do bundles deals. By purchasing a certain number of songs from one artist, 
-they get a discount 
+        Also, it shows artists with multiple songs, with this information, we could do bundles deals. By purchasing a certain number of songs from one artist, they get a discount 
 5. By getting the current year's total sales, we can compare to the prevous years, to track for company growth in terms of revenue appreciation/ depreciation
-         Looking at sales from a certain year in total then comparing the sales of the top sales agent, helps to highlight the amount of work the agent does to 
-promote the store and music.
+         Looking at sales from a certain year in total then comparing the sales of the top sales agent, helps to highlight the amount of work the agent does to promote the store and music.
 6. By identifying the top sales agent, it makes it easier to see which agent is deserving of incentives such as a raise in salary, a promotion, etc
-        Changing the query to (ORDER BY TotalSales ASC) will display the sales agant with the lowest sales. This also helps to implement training strategies 
-to ensure sales agent with the least sales grows and improves
+        Changing the query to (ORDER BY TotalSales ASC) will display the sales agant with the lowest sales. This also helps to implement training strategies to ensure sales agent with the least sales grows and improves
 
