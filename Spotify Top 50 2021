@@ -78,6 +78,15 @@ SELECT track_name, artist_name
 FROM BIT_DB.Spotifydata
 WHERE artist_name LIKE '%Doja Cat%';
 
+#How to Run the Queries:
+1. Ensure you have access to the Spotify database schema. 
+2. Copy and paste the SQL schema and queries into a SQL environment. I recommend DBFiddle
+3. Execute the queries to see the results.
+
+#Technologies Used:
+1. SQL
+2. DBFiddle (online query writing and running)
+
 
 #Business Conclusions
 1. Identifying artists with multiple chart appearances can inform marketing strategies. Featured artists with high frequency can be targeted for collaborations or promotions
