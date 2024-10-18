@@ -1,3 +1,12 @@
+#Project Title: Superstore Analysis
+#Project Overview & Purpose: I used SQL to analyse the Superstore database to get information about items sold at the store and their prices. The findings will help identify pricing and marketing strategies and implement inventory control.
+#Project Questions:
+-- 1. What are the cheapest products?
+-- 2. What is the average product rating?
+-- 3. What Kitchen Supplies are less than $100?
+-- 4. How many Smart LED TVs were sold?
+
+
 #This project uses the following data:
 
 CREATE TABLE superstore (
@@ -27,30 +36,50 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
-#For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices. 
 
-#SQL query that orders the items by price
+-- 1. Order items by price
 SELECT *
 FROM superstore
-ORDER BY price ;
+ORDER BY price;
 
-#SQL query that will show a statistic about the item prices, like a sum, average, minimum, maximum, or count.
-SELECT COUNT (average_rating)
+
+-- 2. Statistic about the item prices
+SELECT COUNT(average_rating) avg_rating
 FROM superstore
-WHERE average_rating >= "4.50";
+WHERE average_rating >= 4.50;
 
-#SQL query that will show a statistic about the price for items in the category of "Kitchen Supplies".
-SELECT MIN(price)
+
+-- 3. Statistic about the price for items in a certain category
+SELECT MIN(price) Price
 FROM superstore
 WHERE category = 'Kitchen Supplies';
 
-#SQL query that will show a statistic about the price for items in the category of "Kitchen Supplies"
+
+-- 4. Statistic about the price for items in the category of "Kitchen Supplies"
 SELECT item_name, price
 FROM superstore
-WHERE price <"100"
+WHERE price <100
 ORDER BY price desc;
 
-#SQL Query that will show how many Smart LED TVs were bought
-SELECT COUNT (item_name)
+
+-- 5. SQL Query that will show how many Smart LED TVs were bought
+SELECT COUNT(item_name)
 FROM superstore 
 WHERE item_name = "Smart LED TV";
+
+
+#How to Run the Queries:
+1. Ensure you have access to the superstore database. This is the link https://www.db-fiddle.com/f/PvBAaQwEUSWAxZCsg4Vmx/0
+2. Copy and paste the SQL queries into a SQL environment. I recommend DBFiddle
+3. Execute the queries to see the results.
+
+#Technologies Used:
+1. SQL
+2. DBFiddle (query writing and running)
+
+#Business Conclusion:
+1. The product pricing strategy can be evaluated to ensure it's competitive. Identifying the cheapest and most expensive products can inform pricing decisions.
+2. Top-rated products can be promoted more aggressively to increase sales. Products with high ratings can be used to improve customer satisfaction.
+3. This information can help set competitive prices for similar products. Identifying affordable options in popular categories can help create marketing strategies.
+4. This information can help create targeted promotions or discounts. Identifying affordable options can inform product bundle strategies.
+5. Sales performance can inform inventory management and restocking decisions.
