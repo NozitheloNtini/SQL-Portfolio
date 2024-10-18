@@ -1,9 +1,9 @@
--- #Project Title: Customer & Order Analytics
--- In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
+#Project Title: Customer & Order Analytics
+In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
 --Note that some queries contain the filter "WHERE length(orderid) = 6 AND orderid <> 'Order ID'". The order id column has some unclean data, that's why we use the filters clean out. So queries that don't use the filters are because the queries do not contain order id.
 
 
--- Orders placed in January
+-- 1.Orders placed in January
 SELECT COUNT(orderid) AS orders
 FROM BIT_DB.JanSales
 WHERE length(orderid) = 6
@@ -11,7 +11,7 @@ AND orderid <> 'Order ID';
 -- This query answers the question, "How many orders were placed in January?"
 
 
--- iPhone orders
+-- 2. iPhone orders
 SELECT COUNT(orderid) AS iPhone_orders
 FROM BIT_DB.JanSales
 WHERE Product = 'iPhone' 
@@ -20,7 +20,7 @@ AND orderid <> 'Order ID';
 -- This query answers the question, "How many of the above orders were for an iPhone?" 
 
 
--- Account numbers for February orders
+-- 3. Account numbers for February orders
 SELECT distinct custo.acctnum
 FROM  BIT_DB.FebSales febs
 INNER JOIN BIT_DB.customers custo
@@ -30,7 +30,7 @@ AND orderid <> 'Order ID';
 -- This query will display customer account numbers for all the orders that were placed in February.
 
 
--- Cheapest order in January
+-- 4. Cheapest order in January
 SELECT distinct Product, MIN (price) AS price
 FROM BIT_DB.JanSales
 GROUP BY product
@@ -39,21 +39,21 @@ LIMIT 1;
 -- This query answers the question, "Which product was the cheapest one sold in January, and what was the price?"
 
 
--- January Revenue
+-- 5. January Revenue
 SELECT product, SUM(quantity)*price as Revenue
 FROM BIT_DB.JanSales
 GROUP BY product;
 -- This query answers the question, "What is the total revenue for each product sold in January?"
 
 
--- Products sold to a certain address 
+-- 6. Products sold to a certain address 
 SELECT product, quantity, SUM(quantity)*price AS total_revenue
 FROM BIT_DB.FebSales
 WHERE location = '548 Lincoln St, Seattle, WA 98101';
 -- This query answers the question, "Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?"
 
 
--- Orders in February and amount spent
+-- 7. Orders in February and amount spent
 SELECT COUNT(distinct custo.acctnum) AS number_of_customers,
 avg(quantity*price) AS avg_spent
 FROM BIT_DB.FebSales Febs
@@ -65,7 +65,7 @@ AND orderid <> 'Order ID';
 -- This query answers the question, "How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?"
 
 
--- Los Angeles products
+-- 8. Los Angeles products
 SELECT product, SUM(quantity) AS total_sold
 FROM BIT_DB.FebSales
 WHERE location LIKE '%los Angeles%'
@@ -73,7 +73,7 @@ GROUP BY product;
 -- This query will list all the products sold in Los Angeles in February, and includes how many of each were sold.
 
 
--- New York orders
+-- 9. New York orders
 SELECT distinct location, count(orderID)
 FROM BIT_DB.JanSales
 WHERE location LIKE '%NY%'
@@ -84,7 +84,7 @@ HAVING count(orderID)>=3;
 -- This query answers the question, "Which locations in New York received at least 3 orders in January, and how many orders did they each receive?"
 
 
---Headphone sales in February
+-- 10. Headphone sales in February
 SELECT product, SUM (quantity) AS total_sold
 FROM BIT_DB.FebSales
 WHERE product LIKE '%headphone%'
@@ -92,7 +92,7 @@ GROUP BY product;
 -- This query answers the question, "How many of each type of headphone were sold in February?"
 
 
---Average spent in February
+-- 11. Average spent in February
 SELECT AVG (quantity*price) AS average_spent
 FROM BIT_DB.customers cust
 INNER JOIN BIT_DB.FebSales Feb
@@ -102,7 +102,7 @@ AND orderid <> 'Order ID';
 -- This query answers the question, "What was the average amount spent per account in February?"
 
 
--- Average bought in February
+-- 12. Average bought in February
 SELECT SUM(quantity)/COUNT(cust.acctnum) AS average_quantity
 FROM BIT_DB.customers cust
 INNER JOIN BIT_DB.FebSales Feb
@@ -112,7 +112,7 @@ AND orderid <> 'Order ID';
 -- This query answers the question, "What was the average quantity of products purchased per account in February?"
 
 
--- Product bringing most revenue in January
+-- 13. Product bringing most revenue in January
 SELECT product, SUM(quantity*price) AS revenue
 FROM BIT_DB.JanSales 
 GROUP BY product
@@ -125,4 +125,22 @@ LIMIT 1;
 -- 1. SQL
 -- 2. SQLiteStudio
 
--- #Conclusion: This project analyses a store database. I used SQL queries to see which items are most ordered and how much money they bring to the store. The different tables aid in providing easier analysis of different months
+#Business Conclusion:
+Orders and Customer Insights
+1. Analysing total January orders can inform sales forecasting and resource allocation. Understanding order volume can optimise operational efficiency.
+2. iPhone sales performance can evaluate the effectiveness of product marketing strategies. High iPhone sales can guide targeted promotions.
+3. Customer account numbers for February orders can inform customer segmentation strategies. Understanding customer demographics can enhance targeted marketing.
+Product Pricing and Revenue
+4. Identifying the cheapest product sold in January can inform pricing strategies. Competitive pricing can increase sales.
+5. Sales performance of specific products can inform inventory management and restocking decisions. Ensuring adequate stock levels can meet customer demand.
+6. Revenue by product can evaluate product profitability. Optimising product mix can improve overall revenue.
+Customer Behavior and Spending
+7. Customer spending patterns in February can inform pricing and promotion strategies. Understanding average spend per account can optimise revenue.
+8. Analysing orders in February from customers who purchased more than 2 products can inform product bundling strategies. Offering incentives for bulk purchases can increase revenue.
+Location-Based Insights
+9. Product sales in Los Angeles can guide targeted marketing initiatives. Understanding regional demand can optimize product distribution.
+10. Locations in New York receiving at least 3 orders in January can inform targeted promotions. Geolocation-specific marketing can enhance customer engagement.
+Product Performance
+11. Headphone sales performance can evaluate product marketing strategies. High demand can guide inventory management.
+12. Average spend per account in February can inform pricing strategies. Competitive pricing can increase sales.
+13. The product generating the most revenue in January can guide product development and optimisation strategies. Identifying top-revenue products can optimise resource allocation.
