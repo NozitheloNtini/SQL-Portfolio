@@ -1,7 +1,7 @@
 
 ## Welcome to Nozithelo Ntini's SQL Portfolio 
 
-Welcome to my SQL Portfolio! Here, you’ll find a collection of projects demonstrating my expertise in SQL, covering various data analysis scenarios. Feel free to explore the projects and reach out if you have any questions or feedback!
+Uncover the power of data-driven insights in my SQL Portfolio. Dive into projects demonstrating technical proficiency and business acumen. For interactive visualizations, check out my [Tableau Dashboards](https://public.tableau.com/app/profile/nozithelo.ntini/vizzes).
 
 ## 📚 Table of Contents
 - [About](#about)
