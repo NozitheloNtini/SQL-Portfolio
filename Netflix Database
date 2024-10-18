@@ -77,14 +77,12 @@ WHERE type = 'Movie' ;
 -- 2. Date of the most recent movie/show added
 SELECT MAX(DATE(date_added)) movie_date
 FROM "netflix_titles_info" ;
--- This query shows us the date of the most recent item added to the database
 
 
 -- 3. Movies and tv shows in alphabetical order
 SELECT title
 FROM "netflix_titles_info"
 ORDER BY title ASC ;
--- This query will display the names of movies and shows in their ascending alphabetical order
 
 
 -- 4. Director of a movie
@@ -93,7 +91,6 @@ FROM "netflix_titles_info" nti
 LEFT JOIN "netflix_people" np
 ON nti.show_id = np.show_id
 WHERE nti.title = 'The Starling';
--- This query will display who the director of the movie The Starling is
 
 
 -- 5. Name and creation date of oldest movie
@@ -101,8 +98,7 @@ SELECT title, release_year
 FROM "netflix_titles_info"
 WHERE type = 'Movie'
 ORDER BY release_year ASC
-LIMIT 1
--- This query will display the oldest movie in the database
+LIMIT 1;
 
 
 #How to Run the Queries:
