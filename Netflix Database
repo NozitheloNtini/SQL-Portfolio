@@ -1,3 +1,12 @@
+#Project Title: Netflix Database
+#Project Overview & Purpose: The purpose of this project is to analyse insights from Netflix's content database. The project aims to provide an understanding of Netflix's movie and TV show offerings, including the total number of movies, most recent additions, alphabetical listing, director information, and historical content data.
+#Project Questions:
+-- 1. How many movie titles are there in the database?
+-- 2. When was the most recent batch of tv shows and/or movies added to the database?
+-- 3. What are all the movies and tv shows?
+-- 4. Who was the Director for the movie The Starling?
+-- 5. What is the oldest movie in the database and what year was it made?
+
 This query uses the following data:
 CREATE TABLE netflix_titles_info
     ("show_id" varchar(5), "type" varchar(7), "title" varchar(58), "country" varchar(74), "date_added" timestamp, "release_year" int, "rating" varchar(5), "duration" varchar(9), "listed_in" varchar(74))
@@ -56,30 +65,29 @@ VALUES
     ('s19', 'Adam Salky', 'Freida Pinto| Logan Marshall-Green| Robert John Burke| Megan Elisabeth Kelly| Sarah Minnich| Hayes Hargrove| Mark Sivertsen| Brandon Fierro| Antonio Valles| Clint Obenchain'),
     ('s20', NULL, 'Blanca SuÃ¡rez| IvÃ¡n Marcos| Ã“scar Casas| AdriÃ¡n Lastra| Francesc Garrido| Stefan Weinert| Julia MÃ¶ller| Alicia Chojnowski')
     ;
-#Project Title: Netflix Database
-This project analyses a Netflix Database. It provides 
 
--- Number of movie titles
+
+-- 1. Number of movie titles
 SELECT COUNT (*) AS number_of_movies
 FROM "netflix_titles_info"
 WHERE type = 'Movie' ;
 -- This query displays the number of movies in the database, being sure to specify that the category is 'Movie' to separate from TV Shows, TV Dramas, etc
 
 
--- Date of the most recent movie/show added
-SELECT MAX(DATE(date_added))
+-- 2. Date of the most recent movie/show added
+SELECT MAX(DATE(date_added)) movie_date
 FROM "netflix_titles_info" ;
 -- This query shows us the date of the most recent item added to the database
 
 
---Movies and tv shows in alphabetical order
+-- 3. Movies and tv shows in alphabetical order
 SELECT title
 FROM "netflix_titles_info"
 ORDER BY title ASC ;
 -- This query will display the names of movies and shows in their ascending alphabetical order
 
 
--- Director of a movie
+-- 4. Director of a movie
 SELECT np.director
 FROM "netflix_titles_info" nti
 LEFT JOIN "netflix_people" np
@@ -88,13 +96,14 @@ WHERE nti.title = 'The Starling';
 -- This query will display who the director of the movie The Starling is
 
 
---Name and creation date of oldest movie
+-- 5. Name and creation date of oldest movie
 SELECT title, release_year
 FROM "netflix_titles_info"
 WHERE type = 'Movie'
 ORDER BY release_year ASC
 LIMIT 1
 -- This query will display the oldest movie in the database
+
 
 #How to Run the Queries:
 1. Ensure you have access to the Netflix Database.
@@ -105,6 +114,14 @@ LIMIT 1
 1. SQL
 2. DB Fiddle (for online SQL testing and sharing). Use this link https://www.db-fiddle.com/f/pfsdrKi9cgCDp4Wwb77AF/0 to run the queries.
 
-#Conclusion
-This project analyses movie and tv shows from Netflix. We see which are the most recent and oldest movies in the franchise. 
-I use JOINS to combine 2 tables, in order to get a single queried result, which helps in showing different tables into one.
+#Business Conclusion
+These insights can inform content acquisition strategies, marketing campaigns, and user experience enhancements, ultimately driving subscriber engagement and retention. By leveraging data analytics, Netflix can maintain its competitive edge in the streaming market and continue to deliver high-quality content to its audience.
+
+1. With 8 movies in the database, there isn't an extensive library of cinematic content.
+2. The most recent addition to the database was on 2021, indicating lack of regular updates to the platform as it is 2024 presently.
+3. The database contains a wide range of movies and TV shows, accessible through alphabetical search.
+4. Director information for specific movies, such as "The Starling," can inform casting and production decisions.
+5. The oldest movie in the database, Sanfoka (1993), highlights Netflix's commitment to preserving cinematic history.
+
+#Recommendation
+Add more movies for a wide variety of entertainment options. Also update database so it's relevant to new customer preferences.
