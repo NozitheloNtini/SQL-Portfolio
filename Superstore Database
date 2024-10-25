@@ -73,9 +73,11 @@ WHERE item_name = "Smart LED TV";
 2. Copy and paste the SQL queries into a SQL environment. I recommend DBFiddle
 3. Execute the queries to see the results.
 
+
 #Technologies Used:
 1. SQL
-2. DBFiddle (query writing and running)
+2. DBFiddle (for online SQL testing and sharing)
+
 
 #Business Conclusion:
 1. The product pricing strategy can be evaluated to ensure it's competitive. Identifying the cheapest and most expensive products can inform pricing decisions.
