@@ -77,7 +77,7 @@ LIMIT 1;
 
 #How to Run the Queries:
 1. Ensure you have access to the chinook database. Link is provided above
-2. Copy and paste the SQL queries into your SQL environment. I used SQLiteStudio 3.4.4
+2. Copy and paste the SQL queries into your SQL environment. I used SQLiteStudio
 3. Execute the queries to see the results.
 
 #Technologies Used:
@@ -86,12 +86,12 @@ LIMIT 1;
 
 #Business Conclusion:
 
-1. By gathering the Top 5 countries with the most orders, we identify our biggest client base. Conversely, by changing the query to (ORDER BY NumberOfOrders ASC) investigations should be down to understand why the countries with the lowest purchases are so. This could be because of pricing, cultural differences, lack of maerketing, etc.
-2. Identifying the customers with the highest purchases helps determine loyal customers. With this, we can do a Loyalty Program: if a client reaches a certain number of orders, they receive an incentive. This increases repeat purchases leading to brand/store loyalty.
+1. By gathering the Top 5 countries with the most orders, we identify our biggest client base. Conversely, by changing the query to (ORDER BY NumberOfOrders ASC) investigations should be down to understand why the countries with the lowest purchases are so. This could be because of pricing, cultural differences, lack of marketing, etc.
+2. Identifying the customers with the highest purchases helps determine loyal customers. With this, we can do a Loyalty Program: if a client reaches a certain number of orders, they receive an incentive. This increases repeat purchases leading to store loyalty.
 3. Identifying the most ordered genre helps us to:
         A. Know which music to add to the store, based off the popular genre to guarantee sales
-        B. BY changing ordering the query to the customer's names (ORDER BY Firstname), we see which genre each customer purchased most of, allowing is to provide personalised marketing and sales recomendations for each customer
-        C. Ensure inventory has the right amount of stock based off customer preferences  
+        B. BY changing ordering the query to the customer's names (ORDER BY Firstname), we see which genre each customer purchased most of, allowing us to provide personalised marketing and sales recommendations for each customer.
+        C. Ensure inventory has the right amount of stock based off customer preferences . 
 4. The database has the artists and their albums stored separately, joining the two tables helps identify which artists have which songs. 
         Also, it shows artists with multiple songs, with this information, we could do bundles deals. By purchasing a certain number of songs from one artist, they get a discount 
 5. By getting the current year's total sales, we can compare to the prevous years, to track for company growth in terms of revenue appreciation/ depreciation
