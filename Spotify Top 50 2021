@@ -87,7 +87,8 @@ WHERE artist_name LIKE '%Doja Cat%';
 
 #Technologies Used:
 1. SQL
-2. DBFiddle (for online SQL testing and sharing)
+2. SQLiteStudio
+3. DBFiddle (for online SQL testing and sharing)
 
 #Business Conclusions
 1. Identifying artists with multiple chart appearances can inform marketing strategies. Featured artists with high frequency can be targeted for collaborations or promotions
