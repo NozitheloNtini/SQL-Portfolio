@@ -102,13 +102,14 @@ LIMIT 1;
 
 
 #How to Run the Queries:
-1. Ensure you have access to the Netflix Database.
+1. Ensure you have access to the Netflix Database. Use this link https://www.db-fiddle.com/f/pfsdrKi9cgCDp4Wwb77AF/0 to run the queries.
 2. Copy and paste the SQL queries into your SQL environment. This query is written in PostgreSQL dialect.
 3. Execute the queries to see the results.
 
+
 #Technologies Used:
 1. SQL
-2. DB Fiddle (for online SQL testing and sharing). Use this link https://www.db-fiddle.com/f/pfsdrKi9cgCDp4Wwb77AF/0 to run the queries.
+2. DB Fiddle (for online SQL testing and sharing). 
 
 #Business Conclusion
 These insights can inform content acquisition strategies, marketing campaigns, and user experience enhancements, ultimately driving subscriber engagement and retention. By leveraging data analytics, Netflix can maintain its competitive edge in the streaming market and continue to deliver high-quality content to its audience.
