@@ -135,14 +135,17 @@ ON fc.industry = ia.industry
 ORDER BY Company_Status ASC;
 --The best company to work for is determined by the presence of healthcare benefits, maternity leave weeks, and paid time off (PTO) days. The query uses a CTE to calculate average maternity leave weeks and paid time off days for each industry. By comparing each company to the averages within its own industry, we ensure that different standards across industries are considered. For example, technology companies might offer more generous PTO policies compared to manufacturing.
 
+
 #How to Run the Queries:
 1. Ensure you have access to the fortune_companies database.
 2. Copy and paste the SQL queries into your SQL environment.
 3. Execute the queries to see the results.
 
+
 #Technologies Used:
 1. SQL
 2. DB Fiddle (for online SQL testing and sharing). Use this link https://www.db-fiddle.com/f/saxdDCCyos6z6UdpjeEXSJ/0 to run the queries.
+
 
 #Conclusion
 This analysis provides valuable insights into the employee benefits offered by Fortune 500 companies, revealing trends across different industries. This project highlights the importance of employee benefits in attracting and retaining employees.
