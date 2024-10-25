@@ -1,5 +1,5 @@
 #Project Title: Spotify Top 50 2021 Analysis
-#Project Overview & Purpose: This project analyses a 2021 Top 50 Charts. It focuses on metrics such as popularity, danceability, tempo, loudness, amoungst other factors. 
+#Project Overview & Purpose: This project analyses a 2021 Top 50 Charts. It focuses on metrics such as popularity, danceability, tempo, loudness, amongst other factors. 
 #Project Questions:
 -- 1. Which artists are popular?
 -- 2. Which artists have more than one song in the chart?
@@ -78,19 +78,20 @@ SELECT track_name, artist_name
 FROM BIT_DB.Spotifydata
 WHERE artist_name LIKE '%Doja Cat%';
 
+
 #How to Run the Queries:
 1. Ensure you have access to the Spotify database schema. 
 2. Copy and paste the SQL schema and queries into a SQL environment. I recommend DBFiddle
 3. Execute the queries to see the results.
 
+
 #Technologies Used:
 1. SQL
-2. DBFiddle (online query writing and running)
-
+2. DBFiddle (for online SQL testing and sharing)
 
 #Business Conclusions
 1. Identifying artists with multiple chart appearances can inform marketing strategies. Featured artists with high frequency can be targeted for collaborations or promotions
-2. Artists with multiple songs in the chart can be prioritized for playlist inclusion. This ensures diverse content while leveraging popular artists.
+2. Artists with multiple songs in the chart can be prioritised for playlist inclusion. This ensures diverse content while leveraging popular artists.
 3. Categorising songs by loudness can optimise playlist sequencing. Balancing loudness levels enhances listener engagement.
 4. Identifying the fastest songs can inform workout or energy-boosting playlists. High-tempo songs can increase user engagement.
 5. Analysing average danceability by artist can guide branding strategies. Artists with high danceability can be marketed for party or club events.
@@ -100,5 +101,5 @@ WHERE artist_name LIKE '%Doja Cat%';
 Partner with popular artists for exclusive content.
 Develop targeted playlists based on audio profiles (loudness, tempo, danceability).
 Enhance music recommendation algorithms using artist and track attributes.
-Optimize playlist sequencing for improved listener engagement.
+Optimise playlist sequencing for improved listener engagement.
 Develop artist-based marketing campaigns to increase brand visibility.
