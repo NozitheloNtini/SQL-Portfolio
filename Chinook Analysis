@@ -80,9 +80,11 @@ LIMIT 1;
 2. Copy and paste the SQL queries into your SQL environment. I used SQLiteStudio
 3. Execute the queries to see the results.
 
+
 #Technologies Used:
 1. SQL
 2. SQLiteStudio (query writing and running)
+
 
 #Business Conclusion:
 
